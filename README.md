@@ -1,10 +1,9 @@
-<![endif]-->
 
 # Aufgabe “**D**okumenten **M**anagement **S**ystem”
 
 Es soll eine WPF-Applikation für die Verwaltung von privaten Verträgen und Quittungen erstellt werden. Ziel ist, dass alle Verträge resp. Quittungen in digitaler Form aufbewahrt werden und gesucht werden können. Dazu werden die jeweiligen Dokumente eingescannt und im Dokumenten Management System abgelegt. Damit Dokumente wiedergefunden werden können, werden Metadaten zu den jeweiligen Dokumenten erfasst. Ihre Designerin hat nun eine WPF-Applikation erstellt, welche Sie nun mit Leben füllen müssen. Dazu hat Ihr Product Owner User Stories erstellt. Setzten Sie diese um und stellen Sie die Qualität der Software mittels Komponenten- und Integrationstests sicher. Gefordert ist eine Testabeckung von >80%.
 
-![d](https://github.com/n1ku/ZbW.Testing.Dms/raw/master/docs/dms0.png)
+![](https://github.com/n1ku/ZbW.Testing.Dms/raw/master/docs/dms0.png)
 
 ![](https://github.com/n1ku/ZbW.Testing.Dms/raw/master/docs/dms1.png)
 
@@ -63,13 +62,13 @@ AC01: In der Detailmaske kann der Benutzer neue Dokumente hinzufügen.
 
 AC02: Der Benutzer muss folgende Metadaten zu jedem Dokument angeben:
 
-<![if !supportLists]>· <![endif]>Bezeichnung*
+-Bezeichnung*
 
-<![if !supportLists]>· <![endif]>Valuta Datum* (z.B. Vertragsdatum / Quittungsdatum)
+-Valuta Datum* (z.B. Vertragsdatum / Quittungsdatum)
 
-<![if !supportLists]>· <![endif]>Typ* (z.B. Vertrag o. Quittung)
+-Typ* (z.B. Vertrag o. Quittung)
 
-<![if !supportLists]>· <![endif]>Stichwörter (optional)
+-Stichwörter (optional)
 
 * Pflichtfelder
 
