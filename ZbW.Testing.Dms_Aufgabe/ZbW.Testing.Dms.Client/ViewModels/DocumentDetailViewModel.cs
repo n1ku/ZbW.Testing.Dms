@@ -1,4 +1,6 @@
-﻿namespace ZbW.Testing.Dms.Client.ViewModels
+﻿using ZbW.Testing.Dms.Client.Model;
+
+namespace ZbW.Testing.Dms.Client.ViewModels
 {
     using System;
     using System.Collections.Generic;
@@ -150,7 +152,11 @@
                 SetProperty(ref _isRemoveFileEnabled, value);
             }
         }
-
+        /// Um den Ursprungspfad der Datei ins Metafile schreiben zu können muss _filePath readable sein von <see cref="MetadataItem"/> aus.
+        public string FilePath
+        {
+            get => _filePath;
+        }
         private void OnCmdDurchsuchen()
         {
             var openFileDialog = new OpenFileDialog();
@@ -164,8 +170,8 @@
 
         private void OnCmdSpeichern()
         {
-            // TODO: Add your Code here
-
+            var metafile = new MetadataItem(this);
+            metafile.GenerateMetaFile();
             _navigateBack();
         }
     }
