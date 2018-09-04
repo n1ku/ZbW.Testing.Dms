@@ -15,5 +15,11 @@
             InitializeComponent();
             DataContext = new DocumentDetailViewModel(benutzer, navigateBack);
         }
+
+        private void btnCmpSpeichern_click(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+        }
+
     }
 }

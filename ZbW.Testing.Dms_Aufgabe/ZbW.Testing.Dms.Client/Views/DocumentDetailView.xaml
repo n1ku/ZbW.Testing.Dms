@@ -27,53 +27,54 @@
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0" Grid.Column="0"
-                   Text="Dokument"/>
+                   Text="Dokument *"/>
         <Button Grid.Row="0" Grid.Column="1"
                 Content="Durchsuchen"
                 Command="{Binding CmdDurchsuchen}"/>
 
         <TextBlock Grid.Row="1" Grid.Column="0"
-                   Text="Bezeichnung"/>
-        <TextBox Grid.Row="1" Grid.Column="1"
+                   Text="Bezeichnung *"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Name="fldBezeichnung"
                  Text="{Binding Bezeichnung}"/>
 
         <TextBlock Grid.Row="2" Grid.Column="0"
-                   Text="Valuta Datum"/>
-        <DatePicker Grid.Row="2" Grid.Column="1"
+                   Text="Valuta Datum *"/>
+        <DatePicker Grid.Row="2" Grid.Column="1" Name="fldValutaDate"
                     SelectedDate="{Binding ValutaDatum}"/>
 
         <TextBlock Grid.Row="3" Grid.Column="0"
-                   Text="Typ"/>
-        <ComboBox Grid.Row="3" Grid.Column="1"
+                   Text="Typ *"/>
+        <ComboBox Grid.Row="3" Grid.Column="1" Name="fldTyp"
                   ItemsSource="{Binding TypItems}"
                   SelectedItem="{Binding SelectedTypItem}"/>
 
         <TextBlock Grid.Row="4" Grid.Column="0"
-                   Text="Stichwörter"/>
-        <TextBox Grid.Row="4" Grid.Column="1"
+                   Text="Stichwörter *"/>
+        <TextBox Grid.Row="4" Grid.Column="1" Name="fldStichworter"
                  Text="{Binding Stichwoerter}"/>
 
         <TextBlock Grid.Row="5" Grid.Column="0"
-                   Text="Erfassungsdatum"/>
-        <TextBox Grid.Row="5" Grid.Column="1"
+                   Text="Erfassungsdatum *"/>
+        <TextBox Grid.Row="5" Grid.Column="1" Name="fldErfassungsdatum"
                  IsEnabled="False"
                  Text="{Binding Erfassungsdatum, StringFormat=dd.MM.yyyy HH:mm:ss}"/>
 
         <TextBlock Grid.Row="6" Grid.Column="0"
                    Text="Benutzer"/>
-        <TextBox Grid.Row="6" Grid.Column="1"
+        <TextBox Grid.Row="6" Grid.Column="1" Name="fldBenutzer"
                  IsEnabled="False"
                  Text="{Binding Benutzer}"/>
 
-        <TextBlock Grid.Row="7" Grid.Column="0"
+        <TextBlock Grid.Row="7" Grid.Column="0" 
                    Text="Datei anschliessend löschen"
                    TextWrapping="Wrap"/>
-        <CheckBox Grid.Row="7" Grid.Column="1"
+        <CheckBox Grid.Row="7" Grid.Column="1" Name="chkboxDateiLoschen"
                   IsChecked="{Binding IsRemoveFileEnabled}"/>
 
         <Button Grid.Row="8" Grid.Column="1"
+                Name="btnCmpSpeichern"
                 Content="Speichern"
-                Command="{Binding CmdSpeichern}"/>
+                Command="{Binding CmdSpeichern}" Click="btnCmpSpeichern_click"/>
 
     </Grid>
 </UserControl>
