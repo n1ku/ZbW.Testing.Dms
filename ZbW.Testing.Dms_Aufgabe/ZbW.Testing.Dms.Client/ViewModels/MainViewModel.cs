@@ -50,6 +50,8 @@
 
         public DelegateCommand CmdNavigateToDocumentDetail { get; }
 
+        public DelegateCommand CmdEnableSaveBtn { get; }
+
         private void OnCmdNavigateToSearch()
         {
             NavigateToSearch();
@@ -64,5 +66,6 @@
         {
             Content = new SearchView();
         }
+
     }
 }

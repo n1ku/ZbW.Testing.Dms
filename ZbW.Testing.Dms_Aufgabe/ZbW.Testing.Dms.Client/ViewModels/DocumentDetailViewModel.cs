@@ -1,4 +1,7 @@
-﻿using ZbW.Testing.Dms.Client.Model;
+﻿using System.Windows;
+using System.Windows.Controls;
+using ZbW.Testing.Dms.Client.Model;
+using ZbW.Testing.Dms.Client.Views;
 
 namespace ZbW.Testing.Dms.Client.ViewModels
 {
@@ -170,9 +173,29 @@ namespace ZbW.Testing.Dms.Client.ViewModels
 
         private void OnCmdSpeichern()
         {
-            var metafile = new MetadataItem(this);
-            metafile.GenerateMetaFile();
-            _navigateBack();
+            if (ChkMandatoryFlds())
+            {
+                var metafile = new MetadataItem(this);
+                metafile.GenerateMetaFile();
+                _navigateBack();
+            }
+            else
+            {
+                string msg = "\nBitte befüllen Sie alle Mussfelder.\n \nMussfelder sind mit '*' markiert.";
+                string header = "Felder nicht befüllt.";
+                MessageBoxButton btns = MessageBoxButton.OK;
+                MessageBox.Show(msg, header, btns);
+            }
+        }
+
+        private bool ChkMandatoryFlds()
+        {
+            bool isValid = !string.IsNullOrEmpty(FilePath) && !string.IsNullOrEmpty(Bezeichnung) &&
+                           ValutaDatum.HasValue &&
+                           !string.IsNullOrEmpty(SelectedTypItem) && !string.IsNullOrEmpty(Stichwoerter) &&
+                           !string.IsNullOrEmpty(Erfassungsdatum.ToString());
+
+            return isValid;
         }
     }
 }
