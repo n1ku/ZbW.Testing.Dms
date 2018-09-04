@@ -52,6 +52,8 @@
 
         public DelegateCommand CmdEnableSaveBtn { get; }
 
+        public DelegateCommand CmdNavigateToSettings { get; }
+
         private void OnCmdNavigateToSearch()
         {
             NavigateToSearch();
