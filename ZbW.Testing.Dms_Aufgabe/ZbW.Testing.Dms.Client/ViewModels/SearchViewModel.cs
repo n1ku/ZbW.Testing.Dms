@@ -6,7 +6,7 @@
     using Prism.Mvvm;
 
     using ZbW.Testing.Dms.Client.Model;
-    using ZbW.Testing.Dms.Client.Repositories;
+    using ZbW.Testing.Dms.Client.Model;
 
     internal class SearchViewModel : BindableBase
     {

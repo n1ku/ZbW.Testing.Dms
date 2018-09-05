@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using ZbW.Testing.Dms.Client.Model;
 using ZbW.Testing.Dms.Client.Views;
+using System.IO;
 
 namespace ZbW.Testing.Dms.Client.ViewModels
 {
@@ -13,8 +14,8 @@ namespace ZbW.Testing.Dms.Client.ViewModels
     using Prism.Commands;
     using Prism.Mvvm;
 
-    using ZbW.Testing.Dms.Client.Repositories;
-
+    using ZbW.Testing.Dms.Client.Model;
+    using ZbW.Testing.Dms.Client.Model;
     internal class DocumentDetailViewModel : BindableBase
     {
         private readonly Action _navigateBack;
@@ -37,15 +38,28 @@ namespace ZbW.Testing.Dms.Client.ViewModels
 
         private DateTime? _valutaDatum;
 
-        public DocumentDetailViewModel(string benutzer, Action navigateBack)
+        private Configuration _config;
+
+        private FileAgent _fileAgent;
+
+        public DocumentDetailViewModel(string benutzer, Configuration config ,Action navigateBack)
         {
             _navigateBack = navigateBack;
+            
             Benutzer = benutzer;
             Erfassungsdatum = DateTime.Now;
             TypItems = ComboBoxItems.Typ;
-
+            this.Config = config;
             CmdDurchsuchen = new DelegateCommand(OnCmdDurchsuchen);
             CmdSpeichern = new DelegateCommand(OnCmdSpeichern);
+        }
+
+
+
+        public Configuration Config
+        {
+            get => _config;
+            set => SetProperty(ref _config, value);
         }
 
         public string Stichwoerter
@@ -173,19 +187,37 @@ namespace ZbW.Testing.Dms.Client.ViewModels
 
         private void OnCmdSpeichern()
         {
-            if (ChkMandatoryFlds())
+            if (string.IsNullOrEmpty(Config.RepoLocationPath))
             {
-                var metafile = new MetadataItem(this);
-                metafile.GenerateMetaFile();
-                _navigateBack();
+                string msg = "Bitte Repositorypfad definieren. \n Klicken Sie dafür auf das schwarze Ordnersymbol unten rechs.\n"+
+                    "Wollen Sie den Pfad gleich definieren?";
+                string header = "Repository unbekannt";
+                MessageBoxButton btns = MessageBoxButton.YesNo;
+                if (MessageBox.Show(msg, header, btns) == MessageBoxResult.Yes)
+                {
+                    Config.DefineRepositoryPathDialog();
+                    OnCmdSpeichern();
+                }
             }
             else
             {
-                string msg = "\nBitte befüllen Sie alle Mussfelder.\n \nMussfelder sind mit '*' markiert.";
-                string header = "Felder nicht befüllt.";
-                MessageBoxButton btns = MessageBoxButton.OK;
-                MessageBox.Show(msg, header, btns);
+                if (ChkMandatoryFlds())
+                {
+                    var metafile = new MetadataItem(this);
+                    metafile.GenerateMetaFile();
+                    _navigateBack();
+                    var fa = new FileAgent();
+                    fa.MoveFile(_filePath, Config.RepoLocationPath);
+                }
+                else
+                {
+                    string msg = "\nBitte befüllen Sie alle Mussfelder.\n \nMussfelder sind mit '*' markiert.";
+                    string header = "Felder nicht befüllt.";
+                    MessageBoxButton btns = MessageBoxButton.OK;
+                    MessageBox.Show(msg, header, btns);
+                }
             }
+
         }
 
         private bool ChkMandatoryFlds()

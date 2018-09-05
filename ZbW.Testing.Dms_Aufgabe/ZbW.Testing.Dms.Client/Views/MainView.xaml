@@ -41,7 +41,7 @@
         <ContentControl Grid.Row="0" Grid.Column="1" Content="{Binding Content}" Margin="5"/>
 
         <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal">
-            <Button Grid.Row="2" Grid.Column="0" Margin="5" ToolTip="Repositorypfad definieren" Command="{Binding CmdNavigateToDocumentDetail}">
+            <Button Grid.Row="2" Grid.Column="0" Margin="5" ToolTip="Repositorypfad definieren" Command="{Binding CmdSetRepoPath}">
                 <Image Source="../Images/repo_settings.png"/>
             </Button>
             <TextBlock Text="Angemeldet als: "/>

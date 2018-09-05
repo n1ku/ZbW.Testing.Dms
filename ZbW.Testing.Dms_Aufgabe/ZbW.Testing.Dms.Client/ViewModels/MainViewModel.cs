@@ -1,4 +1,6 @@
-﻿namespace ZbW.Testing.Dms.Client.ViewModels
+﻿using ZbW.Testing.Dms.Client.Model;
+
+namespace ZbW.Testing.Dms.Client.ViewModels
 {
     using System.Windows.Controls;
 
@@ -13,11 +15,22 @@
 
         private UserControl _content;
 
+        private Configuration _appConfig;
+
         public MainViewModel(string benutzername)
         {
             Benutzer = benutzername;
+            AppConfig = new Configuration(Benutzer);
             CmdNavigateToSearch = new DelegateCommand(OnCmdNavigateToSearch);
             CmdNavigateToDocumentDetail = new DelegateCommand(OnCmdNavigateToDocumentDetail);
+
+            CmdSetRepoPath = new DelegateCommand(OnSetRepoPathUser);
+        }
+
+        public Configuration AppConfig
+        {
+            get => _appConfig;
+            set => SetProperty(ref _appConfig, value);
         }
 
         public string Benutzer
@@ -54,6 +67,8 @@
 
         public DelegateCommand CmdNavigateToSettings { get; }
 
+        public DelegateCommand CmdSetRepoPath { get; }
+
         private void OnCmdNavigateToSearch()
         {
             NavigateToSearch();
@@ -61,7 +76,7 @@
 
         private void OnCmdNavigateToDocumentDetail()
         {
-            Content = new DocumentDetailView(Benutzer, NavigateToSearch);
+            Content = new DocumentDetailView(Benutzer, AppConfig,  NavigateToSearch);
         }
 
         private void NavigateToSearch()
@@ -69,5 +84,14 @@
             Content = new SearchView();
         }
 
+        private void NavigateToSettings()
+        {
+            //Content = new SettingsView();
+        }
+
+        private void OnSetRepoPathUser()
+        {
+            AppConfig.DefineRepositoryPathDialog();
+        }
     }
 }

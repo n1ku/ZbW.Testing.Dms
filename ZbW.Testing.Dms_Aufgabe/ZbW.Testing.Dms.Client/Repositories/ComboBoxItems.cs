@@ -1,4 +1,4 @@
-﻿namespace ZbW.Testing.Dms.Client.Repositories
+﻿namespace ZbW.Testing.Dms.Client.Model
 {
     using System.Collections.Generic;
 

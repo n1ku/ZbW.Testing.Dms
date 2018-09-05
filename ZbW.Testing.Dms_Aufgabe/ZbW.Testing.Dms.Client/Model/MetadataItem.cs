@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reflection;
 using System.Xml;
 using System.Xml.Linq;
+using ZbW.Testing.Dms.Client.Model;
 using ZbW.Testing.Dms.Client.ViewModels;
 
 namespace ZbW.Testing.Dms.Client.Model
@@ -12,12 +13,19 @@ namespace ZbW.Testing.Dms.Client.Model
         private XDocument _xml;
         private PropertyInfo[] _documentFields;
         private DocumentDetailViewModel Document { get; set; }
+        private Configuration _configfile;
+
+        public Configuration Configfile
+        {
+            get => _configfile;
+            set => _configfile = value;
+        }
 
         private XDocument Xml { get; set; }
         public MetadataItem(DocumentDetailViewModel doc)
         {
             Document = doc;
-
+            Configfile = Document.Config;
             var properties = doc.GetType().GetProperties();
             foreach (var property in properties)
             {
@@ -69,13 +77,6 @@ namespace ZbW.Testing.Dms.Client.Model
                 var fldName = fld.Name;
                 Xml.Add(new XElement(fldName, Document.));
             }*/
-
-
-
-
-
-
-
 
         }
 
