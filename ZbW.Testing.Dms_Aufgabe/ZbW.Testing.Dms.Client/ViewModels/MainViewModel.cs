@@ -17,6 +17,8 @@ namespace ZbW.Testing.Dms.Client.ViewModels
 
         private Configuration _appConfig;
 
+        
+
         public MainViewModel(string benutzername)
         {
             Benutzer = benutzername;
@@ -25,6 +27,12 @@ namespace ZbW.Testing.Dms.Client.ViewModels
             CmdNavigateToDocumentDetail = new DelegateCommand(OnCmdNavigateToDocumentDetail);
 
             CmdSetRepoPath = new DelegateCommand(OnSetRepoPathUser);
+
+            if (!string.IsNullOrEmpty(AppConfig.RepoLocationPath))
+            {
+                
+            }
+
         }
 
         public Configuration AppConfig
@@ -92,6 +100,7 @@ namespace ZbW.Testing.Dms.Client.ViewModels
         private void OnSetRepoPathUser()
         {
             AppConfig.DefineRepositoryPathDialog();
+            
         }
     }
 }

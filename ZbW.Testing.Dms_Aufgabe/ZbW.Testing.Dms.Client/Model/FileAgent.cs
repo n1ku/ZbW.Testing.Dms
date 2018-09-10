@@ -56,13 +56,13 @@ namespace ZbW.Testing.Dms.Client.Model
             set => _doc = value;
         }
 
-        public bool CopyFileOnly(string sourcePath, string dstPath)
+        public bool CopyFile(string sourcePath, string dstPath)
         {
             if (!string.IsNullOrWhiteSpace(sourcePath) &&
                 !string.IsNullOrWhiteSpace(dstPath))
             {
                 
-                System.IO.File.Copy(sourcePath,dstPath);
+                File.Copy(sourcePath,dstPath);
                 return true;
             }
 
@@ -73,8 +73,10 @@ namespace ZbW.Testing.Dms.Client.Model
             if (!string.IsNullOrWhiteSpace(sourcePath) &&
                 !string.IsNullOrWhiteSpace(dstPath))
             {
-
-                System.IO.File.Move(sourcePath,dstPath);
+                var indexOf = sourcePath.LastIndexOf("\\");
+                string fileName = sourcePath.Substring(indexOf);
+                string targetPath = dstPath + fileName;
+                File.Move(sourcePath,targetPath);
                 return true;
             }
 

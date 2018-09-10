@@ -21,8 +21,6 @@ namespace ZbW.Testing.Dms.Client.Model
             _userName = usr;
             ConfigXml = new XDocument();
             if (!ConfigXmlExists()) GenerateConfigFile();
-            else GetConfigRepoValue();
-
 
         }
 
@@ -55,8 +53,8 @@ namespace ZbW.Testing.Dms.Client.Model
 
         public void DefineRepositoryPathDialog()
         {
-            if (!ConfigXmlExists()) GenerateConfigFile();
-            using (var fld = new FolderBrowserDialog())
+            if(!ConfigXmlExists()) GenerateConfigFile();
+            using ( var fld = new FolderBrowserDialog())
             {
                 fld.ShowNewFolderButton = true;
                 DialogResult result = fld.ShowDialog();
@@ -64,7 +62,7 @@ namespace ZbW.Testing.Dms.Client.Model
                 if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fld.SelectedPath))
                 {
                     RepoLocationPath = fld.SelectedPath;
-                    SetConfigRepoValue();
+                    AddRepoToXml();
                 }
             }
         }
@@ -85,7 +83,7 @@ namespace ZbW.Testing.Dms.Client.Model
                 );
                 ConfigXml.Save(ConfigFilePath);
             }
-
+            
         }
 
         public bool ConfigXmlExists()
@@ -95,28 +93,44 @@ namespace ZbW.Testing.Dms.Client.Model
             return System.IO.File.Exists(ConfigFilePath);
         }
 
+        public bool ConfigXmlUserKnown()
+        {
+            foreach (var element in ConfigXml.Elements())
+            {
+                XAttribute usr = element.Attribute("userId");
+                if (usr != null)
+                {
+                    if (usr.Value.Equals(UserName)) return true;
+                }
+            }
+
+            return false;
+        }
+        /**
+        public void AddNewElement()
+        {
+            XElement configRecord;
+            XDocument xmlFile = XDocument.Load(ConfigFilePath);
+            configRecord = new XElement("Config", new XAttribute("configAddedAt", DateTime.Now),
+                new XElement("User", UserName),
+                new XElement("RepositoryPath", RepoLocationPath)
+            );
+            foreach (var element in xmlFile.Elements())
+            {
+                if (!ConfigXmlUserKnown())
+                {
+                    element.
+                }
+            }
+        }*/
+
         public void AddRepoToXml()
         {
-
+            
             string xp = "//RepositoryPath";
 
             var ele = ConfigXml.XPathSelectElement(xp);
             ele?.SetValue(RepoLocationPath);
-            ConfigXml.Save(ConfigFilePath);
-        }
-
-        public void GetConfigRepoValue()
-        {
-            ConfigXml = XDocument.Load(ConfigFilePath);
-            XElement repo = ConfigXml.XPathSelectElement("//RepositoryPath");
-            RepoLocationPath = repo?.Value;
-        }
-
-        public void SetConfigRepoValue()
-        {
-            ConfigXml = XDocument.Load(ConfigFilePath);
-            XElement repo = ConfigXml.XPathSelectElement("//RepositoryPath");
-            if (repo != null) repo.Value = RepoLocationPath;
             ConfigXml.Save(ConfigFilePath);
         }
     }
