@@ -61,8 +61,9 @@ namespace ZbW.Testing.Dms.Client.Model
             if (!string.IsNullOrWhiteSpace(sourcePath) &&
                 !string.IsNullOrWhiteSpace(dstPath))
             {
-                
-                File.Copy(sourcePath,dstPath);
+                string fn = GetFileNameOf(sourcePath);
+                string targetPath = dstPath + fn;
+                File.Copy(sourcePath,targetPath);
                 return true;
             }
 
@@ -73,9 +74,8 @@ namespace ZbW.Testing.Dms.Client.Model
             if (!string.IsNullOrWhiteSpace(sourcePath) &&
                 !string.IsNullOrWhiteSpace(dstPath))
             {
-                var indexOf = sourcePath.LastIndexOf("\\");
-                string fileName = sourcePath.Substring(indexOf);
-                string targetPath = dstPath + fileName;
+                string fn = GetFileNameOf(sourcePath);
+                string targetPath = dstPath + fn;
                 File.Move(sourcePath,targetPath);
                 return true;
             }
@@ -83,6 +83,12 @@ namespace ZbW.Testing.Dms.Client.Model
             return false;
         }
 
+        private string GetFileNameOf(string pathStr)
+        {
+            var indexOf = pathStr.LastIndexOf("\\");
+            return pathStr.Substring(indexOf);
+        }
 
+        
     }
 }

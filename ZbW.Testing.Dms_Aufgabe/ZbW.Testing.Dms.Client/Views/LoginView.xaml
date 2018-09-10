@@ -34,8 +34,8 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Row="0" Grid.Column="0" Content="Login" Command="{Binding CmdLogin}"/>
-            <Button Grid.Row="0" Grid.Column="1" Content="Abbrechen" Command="{Binding CmdAbbrechen}"/>
+            <Button Grid.Row="0" Grid.Column="0" Content="Login" Command="{Binding CmdLogin}" IsDefault="True"/>
+            <Button Grid.Row="0" Grid.Column="1" Content="Abbrechen" Command="{Binding CmdAbbrechen}" IsCancel="True"/>
         </Grid>
     </Grid>
 </Window>
