@@ -41,7 +41,6 @@
         <ContentControl Grid.Row="0" Grid.Column="1" Content="{Binding Content}" Margin="5"/>
 
         <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal">
-            <Label Content="Repo: " RenderTransformOrigin="-4.833,0.541" HorizontalAlignment="Right" Width="41"/>
             <Label Name="lblRepoValue" Content="{Binding AppConfig.RepoLocationPath}" RenderTransformOrigin="-5.363,0.502"/>
             <Button Grid.Row="2" Grid.Column="0" Margin="5" ToolTip="Repositorypfad definieren" Command="{Binding CmdSetRepoPath}">
                 <Image Source="../Images/repo_settings.png"/>

@@ -28,10 +28,6 @@ namespace ZbW.Testing.Dms.Client.ViewModels
 
             CmdSetRepoPath = new DelegateCommand(OnSetRepoPathUser);
 
-            if (!string.IsNullOrEmpty(AppConfig.RepoLocationPath))
-            {
-                
-            }
 
         }
 
