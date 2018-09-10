@@ -207,7 +207,8 @@ namespace ZbW.Testing.Dms.Client.ViewModels
                     metafile.GenerateMetaFile();
                     _navigateBack();
                     var fa = new FileAgent();
-                    fa.MoveFile(_filePath, Config.RepoLocationPath);
+                    if (IsRemoveFileEnabled) fa.MoveFile(_filePath, Config.RepoLocationPath);
+                    else fa.CopyFile(_filePath, Config.RepoLocationPath);
                 }
                 else
                 {

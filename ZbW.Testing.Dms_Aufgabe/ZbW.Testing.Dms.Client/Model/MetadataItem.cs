@@ -68,7 +68,14 @@ namespace ZbW.Testing.Dms.Client.Model
                     )
                 )
             );
-            Xml.Save("C:\\temp\\test.xml");
+            string dsc = Document.Bezeichnung;
+            string typ = Document.SelectedTypItem;
+            DateTime now = DateTime.Now;
+            string metaFile = Configfile.RepoLocationPath + "\\" + "DMS-" + dsc + "-" + typ + "_" + 
+                              now.Millisecond + now.Second + now.Minute +
+                              now.Day+ now.Month + now.Year + ".xml";
+
+            Xml.Save(metaFile);
 
 
             /** dynamic implementation
