@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.IO;
+using System.Xml.Linq;
 using ZbW.Testing.Dms.Client.ViewModels;
 
 namespace ZbW.Testing.Dms.Client.Model
@@ -15,8 +16,9 @@ namespace ZbW.Testing.Dms.Client.Model
         private string _sourcePath;
         private string _destinationPath;
         private DocumentDetailViewModel _doc;
-
-        public FileAgent(DocumentDetailViewModel doc)
+        private XDocument[] _xmlDocs;
+ 
+        public FileAgent(DocumentDetailViewModel doc = null)
         {
             _doc = doc;
         }
@@ -26,10 +28,6 @@ namespace ZbW.Testing.Dms.Client.Model
             _fileName = fileName;
             _sourcePath = sourcePath;
             _destinationPath = destinationPath;
-        }
-
-        public FileAgent()
-        {
         }
 
         public string FileName
@@ -89,7 +87,14 @@ namespace ZbW.Testing.Dms.Client.Model
             return pathStr.Substring(indexOf);
         }
 
-        private Configuration 
+        private Configuration GetConfigFile()
+        {
+            var cnfg = new Configuration();
+            if (cnfg != null) return cnfg;
+            return null;
+        }
         
+        //TODO add method to get all xml files from repo path
+
     }
 }

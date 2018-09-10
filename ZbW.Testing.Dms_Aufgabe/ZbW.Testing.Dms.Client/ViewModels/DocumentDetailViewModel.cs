@@ -169,7 +169,7 @@ namespace ZbW.Testing.Dms.Client.ViewModels
                 SetProperty(ref _isRemoveFileEnabled, value);
             }
         }
-        /// Um den Ursprungspfad der Datei ins Metafile schreiben zu können muss _filePath readable sein von <see cref="MetadataItem"/> aus.
+        /// Um den Ursprungspfad der Datei ins Metafile schreiben zu können muss _filePath readable sein von <see cref="MetadataItemXml"/> aus.
         public string FilePath
         {
             get => _filePath;
@@ -196,6 +196,7 @@ namespace ZbW.Testing.Dms.Client.ViewModels
                 if (MessageBox.Show(msg, header, btns) == MessageBoxResult.Yes)
                 {
                     Config.DefineRepositoryPathDialog();
+                    
                     OnCmdSpeichern();
                 }
             }
@@ -203,7 +204,7 @@ namespace ZbW.Testing.Dms.Client.ViewModels
             {
                 if (ChkMandatoryFlds())
                 {
-                    var metafile = new MetadataItem(this);
+                    var metafile = new MetadataItemXml(this);
                     metafile.GenerateMetaFile();
                     _navigateBack();
                     var fa = new FileAgent();

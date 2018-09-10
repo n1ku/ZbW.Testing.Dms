@@ -10,9 +10,9 @@
 
     internal class SearchViewModel : BindableBase
     {
-        private List<MetadataItem> _filteredMetadataItems;
+        private List<MetadataItemXml> _filteredMetadataItems;
 
-        private MetadataItem _selectedMetadataItem;
+        private MetadataItemXml _selectedMetadataItemXml;
 
         private string _selectedTypItem;
 
@@ -30,7 +30,7 @@
             CmdReset = new DelegateCommand(OnCmdReset);
             CmdOeffnen = new DelegateCommand(OnCmdOeffnen, OnCanCmdOeffnen);
             
-            Config = new Configuration(Ben);
+            Config = new Configuration();
 
         }
 
@@ -85,7 +85,7 @@
             }
         }
 
-        public List<MetadataItem> FilteredMetadataItems
+        public List<MetadataItemXml> FilteredMetadataItems
         {
             get
             {
@@ -98,16 +98,16 @@
             }
         }
 
-        public MetadataItem SelectedMetadataItem
+        public MetadataItemXml SelectedMetadataItemXml
         {
             get
             {
-                return _selectedMetadataItem;
+                return _selectedMetadataItemXml;
             }
 
             set
             {
-                if (SetProperty(ref _selectedMetadataItem, value))
+                if (SetProperty(ref _selectedMetadataItemXml, value))
                 {
                     CmdOeffnen.RaiseCanExecuteChanged();
                 }
@@ -116,7 +116,7 @@
 
         private bool OnCanCmdOeffnen()
         {
-            return SelectedMetadataItem != null;
+            return SelectedMetadataItemXml != null;
         }
 
         private void OnCmdOeffnen()
@@ -134,9 +134,6 @@
             // TODO: Add your Code here
         }
 
-        private MetadataItem GetAllMetaFiles()
-        {
-            var repoPath = 
-        }
+
     }
 }

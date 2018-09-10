@@ -27,6 +27,8 @@ namespace ZbW.Testing.Dms.Client.Model
 
         }
 
+        public Configuration() { }
+
 
         public string UserName => _userName;
 
@@ -112,6 +114,13 @@ namespace ZbW.Testing.Dms.Client.Model
             XElement repo = ConfigXml.XPathSelectElement("//RepositoryPath");
             if (repo != null) repo.Value = RepoLocationPath;
             ConfigXml.Save(ConfigFilePath);
+        }
+
+        public XDocument GetConfigXml()
+        {
+            ConfigXml = XDocument.Load(ConfigFilePath);
+            if (ConfigXml != null) return ConfigXml;
+            return null;
         }
     }
 }
