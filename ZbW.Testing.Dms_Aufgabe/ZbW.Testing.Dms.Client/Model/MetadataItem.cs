@@ -26,6 +26,7 @@ namespace ZbW.Testing.Dms.Client.Model
         {
             Document = doc;
             Configfile = Document.Config;
+            /**
             var properties = doc.GetType().GetProperties();
             foreach (var property in properties)
             {
@@ -33,7 +34,7 @@ namespace ZbW.Testing.Dms.Client.Model
                 {
                     this._documentFields[i] = property;
                 }
-            }
+            }*/
 
             Xml = new XDocument();
 

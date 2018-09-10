@@ -95,8 +95,7 @@ namespace ZbW.Testing.Dms.Client.Model
 
         public bool ConfigXmlExists()
         {
-            string p = GetConfigFilePath();
-            ConfigFilePath = p;
+            ConfigFilePath = GetConfigFilePath();
             return System.IO.File.Exists(ConfigFilePath);
         }
 

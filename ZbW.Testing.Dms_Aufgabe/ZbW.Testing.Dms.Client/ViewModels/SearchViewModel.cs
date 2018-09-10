@@ -20,6 +20,8 @@
 
         private List<string> _typItems;
 
+        private Configuration _config;
+
         public SearchViewModel()
         {
             TypItems = ComboBoxItems.Typ;
@@ -27,6 +29,15 @@
             CmdSuchen = new DelegateCommand(OnCmdSuchen);
             CmdReset = new DelegateCommand(OnCmdReset);
             CmdOeffnen = new DelegateCommand(OnCmdOeffnen, OnCanCmdOeffnen);
+            
+            Config = new Configuration(Ben);
+
+        }
+
+        public Configuration Config
+        {
+            get => _config;
+            set => SetProperty(ref _config, value);
         }
 
         public DelegateCommand CmdOeffnen { get; }
@@ -121,6 +132,11 @@
         private void OnCmdReset()
         {
             // TODO: Add your Code here
+        }
+
+        private MetadataItem GetAllMetaFiles()
+        {
+            var repoPath = 
         }
     }
 }

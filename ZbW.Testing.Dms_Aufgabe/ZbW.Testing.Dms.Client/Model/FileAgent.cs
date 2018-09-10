@@ -89,6 +89,7 @@ namespace ZbW.Testing.Dms.Client.Model
             return pathStr.Substring(indexOf);
         }
 
+        private Configuration 
         
     }
 }
